@@ -17,8 +17,8 @@ public class MainToPictures extends javax.swing.JFrame {
     private void initComponents() {
 
         JPanel = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jToggleButton1 = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Zdjęcia - Grażyna Górka");
@@ -27,17 +27,17 @@ public class MainToPictures extends javax.swing.JFrame {
         JPanel.setBackground(new java.awt.Color(225, 255, 255));
         JPanel.setToolTipText("");
 
-        jButton1.setBackground(new java.awt.Color(240, 231, 159));
-        jButton1.setText("Wczytaj zdjęcie");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         jLabel1.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentResized(java.awt.event.ComponentEvent evt) {
                 jLabel1ComponentResized(evt);
+            }
+        });
+
+        jToggleButton1.setBackground(new java.awt.Color(240, 231, 159));
+        jToggleButton1.setText("Wczytaj Zdjęcie");
+        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton1ActionPerformed(evt);
             }
         });
 
@@ -46,12 +46,10 @@ public class MainToPictures extends javax.swing.JFrame {
         JPanelLayout.setHorizontalGroup(
             JPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JPanelLayout.createSequentialGroup()
-                .addContainerGap(299, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(306, 306, 306))
-            .addGroup(JPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(JPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jToggleButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 692, Short.MAX_VALUE))
                 .addContainerGap())
         );
         JPanelLayout.setVerticalGroup(
@@ -59,9 +57,9 @@ public class MainToPictures extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 536, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jToggleButton1)
+                .addGap(6, 6, 6))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -78,7 +76,15 @@ public class MainToPictures extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jLabel1ComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jLabel1ComponentResized
+        if (image!=null) {
+           Image tempImage = image.getScaledInstance(jLabel1.getWidth(), jLabel1.getHeight(), Image.SCALE_SMOOTH);
+           ImageIcon imageIcon = new ImageIcon(tempImage);
+           jLabel1.setIcon(imageIcon);
+        }
+    }//GEN-LAST:event_jLabel1ComponentResized
+
+    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
         javax.swing.UIManager.put("FileChooser.cancelButtonText", "Anuluj");
         javax.swing.UIManager.put("FileChooser.openButtonText", "Otwórz");
 
@@ -101,15 +107,7 @@ public class MainToPictures extends javax.swing.JFrame {
             ImageIcon imageIcon = new ImageIcon(imageTemp);
             jLabel1.setIcon(imageIcon);
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jLabel1ComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jLabel1ComponentResized
-        if (image!=null) {
-           Image tempImage = image.getScaledInstance(jLabel1.getWidth(), jLabel1.getHeight(), Image.SCALE_SMOOTH);
-           ImageIcon imageIcon = new ImageIcon(tempImage);
-           jLabel1.setIcon(imageIcon);
-        }
-    }//GEN-LAST:event_jLabel1ComponentResized
+    }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -148,7 +146,7 @@ public class MainToPictures extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel JPanel;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JToggleButton jToggleButton1;
     // End of variables declaration//GEN-END:variables
 }
